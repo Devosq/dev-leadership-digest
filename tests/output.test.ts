@@ -3,13 +3,13 @@ import { secretScrub, buildTelegramBrief, buildObsidianNote } from '../src/outpu
 import type { RepoResult } from '../src/schemas';
 
 const sample: RepoResult = {
-  name: 'Addwork',
+  name: 'demoApp',
   pm: { missingFeatures: ['SSO'], backlog: [{ title: 'Add billing export', impact: 'high', effort: 'medium', why: 'unblocks paid' }], mrrIdeas: [] },
   cto: { techDebt: [{ file: 'a.ts', issue: 'god object', severity: 'medium' }], securityRisks: [], scalingRisks: [], bottlenecks: ['n+1 queries'] },
   qa: { bugs: [{ file: 'login.ts', symptom: 'null deref on empty email', severity: 'high' }], edgeCases: ['unicode names'], crashRisks: [] },
   growth: { competitorMoves: [], missingVsCompetitors: ['mobile app'], opportunities: ['SEO'] },
   synth: { tomorrowTasks: [], oneLine: 'Ship billing export, fix login null deref.' },
-  newTasks: [{ title: 'Fix login null deref', repo: 'Addwork', role: 'qa', priority: 'high', scopeHint: 'login.ts guard empty email' }],
+  newTasks: [{ title: 'Fix login null deref', repo: 'demoApp', role: 'qa', priority: 'high', scopeHint: 'login.ts guard empty email' }],
 };
 
 describe('secretScrub', () => {
@@ -36,7 +36,7 @@ describe('secretScrub', () => {
 describe('buildTelegramBrief', () => {
   it('includes repo name, a bug, a feature and tomorrow tasks', () => {
     const out = buildTelegramBrief([sample], '2026-06-19');
-    expect(out).toContain('Addwork');
+    expect(out).toContain('demoApp');
     expect(out).toContain('null deref on empty email');
     expect(out).toContain('Add billing export');
     expect(out).toContain('Fix login null deref');
@@ -52,7 +52,7 @@ describe('buildObsidianNote', () => {
     const note = buildObsidianNote([sample], '2026-06-19');
     expect(note).toContain('tyyppi: dev-digest');
     expect(note).toContain('uudet_tehtavat: 1');
-    expect(note).toContain('## Addwork');
+    expect(note).toContain('## demoApp');
     expect(note).toContain('Fix login null deref');
     expect(note).toContain('god object');
   });

@@ -10,8 +10,8 @@ describe('normalizeState', () => {
   });
 
   it('fills missing/old fields so deepDiveCursor never becomes NaN', () => {
-    const out = normalizeState({ repos: { Addwork: { lastRun: '2026-06-18' } } });
-    expect(out.repos.Addwork).toEqual({ lastRun: '2026-06-18', reportedHashes: [], deepDiveCursor: 0 });
+    const out = normalizeState({ repos: { demoApp: { lastRun: '2026-06-18' } } });
+    expect(out.repos.demoApp).toEqual({ lastRun: '2026-06-18', reportedHashes: [], deepDiveCursor: 0 });
   });
 
   it('drops non-string hashes and non-finite cursors', () => {
@@ -24,7 +24,7 @@ const mk = (repo: string, title: string): Task => ({ repo, title, role: 'qa', pr
 
 describe('taskHash', () => {
   it('is stable and case/space-insensitive', () => {
-    expect(taskHash('Addwork', 'Fix login')).toBe(taskHash('Addwork', '  fix   LOGIN '));
+    expect(taskHash('demoApp', 'Fix login')).toBe(taskHash('demoApp', '  fix   LOGIN '));
   });
   it('differs by repo', () => {
     expect(taskHash('A', 'same')).not.toBe(taskHash('B', 'same'));

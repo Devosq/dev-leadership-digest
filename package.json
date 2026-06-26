@@ -1,7 +1,6 @@
 {
   "name": "dev-leadership-digest",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "description": "Nightly read-only multi-role code analysis -> one morning brief (Telegram + Obsidian). Fully local (Ollama qwen), EU-safe, €0.",
   "engines": { "node": ">=18" },

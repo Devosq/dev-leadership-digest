@@ -1,12 +1,16 @@
 # Contributing
 
-This is a personal configuration shared privately for reference and reuse.
+Contributions welcome!
 
-## Conventions
-- **Branches:** `feat/...`, `fix/...`, `docs/...` off `main`.
-- **Commits:** [Conventional Commits](https://www.conventionalcommits.org/), English.
-- **No secrets:** never commit real keys, tokens, IPs, or `.env` files. Use placeholders.
+## Development
+```bash
+npm install
+npm test            # vitest, offline (mock provider)
+npm run typecheck   # tsc --noEmit, strict
+```
 
-## Adapting for your own setup
-Replace placeholders (`<USERNAME>`, `<VPS1_IP>`, `<SUPABASE_PROJECT_REF>`, etc.)
-with your own values in a local copy. Keep secrets in `.env` (git-ignored).
+## Guidelines
+- Keep it **read-only and local-first** — no repo writes, no cloud LLM in the
+  runtime, no auto-execution of model output.
+- Add a test for any logic change (`tests/`, vitest).
+- Conventional Commits, English. Never commit secrets (`.env` is git-ignored).

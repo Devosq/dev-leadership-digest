@@ -58,10 +58,10 @@ export async function runDigest(opts: RunOptions): Promise<{ results: RepoResult
   if (repos.length === 0) log.warn('digest', 'no repos matched — check DIGEST_REPOS / --repo');
 
   // Fail fast in live mode if the local model is unreachable, so a nightly run
-  // with the VPS2 tunnel down logs an error instead of writing a misleading
+  // with the Ollama tunnel down logs an error instead of writing a misleading
   // "all clear" empty note + Telegram.
   if (!opts.dryRun && !(await llm.ping())) {
-    throw new Error('Ollama endpoint unreachable — aborting live run (no note/Telegram written). Bring up the VPS2 tunnel and retry.');
+    throw new Error('Ollama endpoint unreachable — aborting live run (no note/Telegram written). Bring up the Ollama tunnel and retry.');
   }
 
   const results: RepoResult[] = [];
@@ -114,7 +114,7 @@ export async function runDigest(opts: RunOptions): Promise<{ results: RepoResult
     throw new Error(
       'Ollama endpoint produced 0 successful responses after ping — likely died mid-run. ' +
         'Aborting before writing note/Telegram to avoid a misleading "all clear" digest. ' +
-        'Repo state is unchanged; bring the VPS2 tunnel back up and retry.',
+        'Repo state is unchanged; bring the Ollama tunnel back up and retry.',
     );
   }
 

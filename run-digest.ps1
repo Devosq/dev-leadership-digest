@@ -1,5 +1,5 @@
 # Dev Leadership Digest — nightly runner (workstation Task Scheduler).
-# Brings up the VPS2 Ollama SSH tunnel (127.0.0.1:11435 -> VPS2:11434) if it is
+# Brings up the Ollama SSH tunnel (127.0.0.1:11435 -> OLLAMA_HOST:11434) if it is
 # not already listening, then runs the digest. All output -> logs/digest-<date>.log.
 # Safe to run by hand any time: `pwsh -File run-digest.ps1`.
 
@@ -15,11 +15,11 @@ function Test-Port($p) {
 }
 
 # Ensure the Ollama tunnel is up (best-effort). Adjust the SSH target if your
-# VPS2 host/user/key differ. The digest aborts cleanly if Ollama is unreachable,
+# the Ollama host host/user/key differ. The digest aborts cleanly if Ollama is unreachable,
 # so a failed tunnel never produces a misleading "all clear" note.
 if (-not (Test-Port 11435)) {
-  "[{0}] starting VPS2 Ollama tunnel" -f (Get-Date -Format o) | Tee-Object -FilePath $log -Append | Out-Null
-  Start-Process ssh -ArgumentList '-fN', '-o', 'ServerAliveInterval=30', '-L', '11435:127.0.0.1:11434', 'root@<VPS2_IP>' -WindowStyle Hidden
+  "[{0}] starting the Ollama tunnel" -f (Get-Date -Format o) | Tee-Object -FilePath $log -Append | Out-Null
+  Start-Process ssh -ArgumentList '-fN', '-o', 'ServerAliveInterval=30', '-L', '11435:127.0.0.1:11434', 'user@your-ollama-host' -WindowStyle Hidden
   Start-Sleep -Seconds 5
 }
 
