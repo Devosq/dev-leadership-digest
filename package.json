@@ -1,0 +1,25 @@
+{
+  "name": "dev-leadership-digest",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Nightly read-only multi-role code analysis -> one morning brief (Telegram + Obsidian). Fully local (Ollama qwen), EU-safe, €0.",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "digest": "tsx src/index.ts",
+    "dry": "tsx src/index.ts --dry-run",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
+  }
+}
