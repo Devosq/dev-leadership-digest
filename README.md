@@ -72,4 +72,4 @@ the worst case is "a bogus task in the brief". Re-evaluate before adding cloud L
 routing or any task auto-execution.
 
 ## License
-[MIT](./LICENSE) (c) Oscar Vatanen
+[MIT](./LICENSE) (c) Devosq
